@@ -36,7 +36,6 @@ const FOG_WEATHER_TYPES = new Set([
 ]);
 
 const DEFAULT_WEATHER = "drizzle";
-const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
 const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
@@ -151,14 +150,12 @@ function applyWeatherData({ location, weather }) {
 }
 
 async function weatherSearch({ latitude, longitude }) {
-  if (!apiKey) {
-    return;
-  }
-
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`,
-    );
+    const queryString = new URLSearchParams({
+      lat: String(latitude),
+      lon: String(longitude),
+    });
+    const response = await fetch(`/api/weather?${queryString}`);
     const weatherResponse = await response.json();
 
     if (!response.ok) {
@@ -166,8 +163,8 @@ async function weatherSearch({ latitude, longitude }) {
     }
 
     applyWeatherData({
-      location: weatherResponse.name,
-      weather: normalizeWeather(weatherResponse.weather?.[0]?.main),
+      location: weatherResponse.location,
+      weather: normalizeWeather(weatherResponse.weather),
     });
   } catch (error) {
     console.error(error);
@@ -175,7 +172,7 @@ async function weatherSearch({ latitude, longitude }) {
 }
 
 function askForLocation() {
-  if (!navigator.geolocation || !apiKey) {
+  if (!navigator.geolocation) {
     return;
   }
 
