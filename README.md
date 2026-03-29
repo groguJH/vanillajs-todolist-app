@@ -1,7 +1,11 @@
 # ToDo List
+<img  width="500px" height="auto" alt="todolist1" src="https://github.com/user-attachments/assets/10810e5e-4cf8-48b2-b84f-15c2b47f849d" />
+<img width="500" height="auto" alt="todolist2" src="https://github.com/user-attachments/assets/f55981f4-8be1-472f-ac42-24860c35a865" />
 
 현재 위치의 날씨를 반영해 배경이 바뀌는 간단한 ToDo List 프로젝트입니다.  
 Vanilla JavaScript로 DOM 조작, 로컬 스토리지 저장, 비동기 API 호출을 직접 구현했고, OpenWeather API 키는 서버 경유 방식으로 분리해 브라우저에 노출되지 않도록 개선했습니다.
+[🔗프로젝트 링크](https://todolist-app-flax-alpha.vercel.app/)
+<br/>
 
 ## 프로젝트 소개
 
